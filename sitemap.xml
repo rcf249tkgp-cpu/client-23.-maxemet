@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TODO: replace https://maxmet.fi/ with the real domain -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://maxmet.fi/</loc>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://maxmet.fi/?lang=sv"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://maxmet.fi/?lang=fi"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maxmet.fi/?lang=en"/>
+  </url>
+</urlset>

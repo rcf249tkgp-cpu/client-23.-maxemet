@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maxmet Ab – Metallarbeten och svetsning i Kyrkslätt</title>
+  <meta name="description" content="Maxmet är en ny metallverkstad i Luoma, Kyrkslätt. Specialtillverkning, svetsning, plåtarbeten, räcken och trappor, reparationer och småserier. Begär offert.">
+  <meta name="theme-color" content="#121417">
+  <!-- TODO: replace https://maxmet.fi/ with the real domain (also in sitemap.xml, robots.txt and the JSON-LD below) -->
+  <link rel="canonical" href="https://maxmet.fi/">
+  <link rel="alternate" hreflang="sv" href="https://maxmet.fi/?lang=sv">
+  <link rel="alternate" hreflang="fi" href="https://maxmet.fi/?lang=fi">
+  <link rel="alternate" hreflang="en" href="https://maxmet.fi/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://maxmet.fi/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Maxmet">
+  <meta property="og:title" content="Maxmet Ab – Metallarbeten och svetsning i Kyrkslätt">
+  <meta property="og:description" content="Ny metallverkstad i Luoma, Kyrkslätt. Specialtillverkning, svetsning, plåtarbeten, räcken och trappor.">
+  <meta property="og:url" content="https://maxmet.fi/">
+  <meta property="og:locale" content="sv_FI">
+  <meta property="og:locale:alternate" content="fi_FI">
+  <meta property="og:locale:alternate" content="en_GB">
+  <!-- TEMP: share image – replace with the client's own photo (1200×630) -->
+  <meta property="og:image" content="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1200&h=630&q=80">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://maxmet.fi/#business",
+    "name": "Maxmet Ab",
+    "alternateName": ["Maxmet Oy", "Maxmet Ltd", "Maxmet"],
+    "description": "Metallverkstad i Kyrkslätt: specialtillverkning, svetsning, plåtarbeten, räcken och trappor, reparationer och småserier.",
+    "url": "https://maxmet.fi/",
+    "image": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1200&h=630&q=80",
+    "telephone": "+358000000000",
+    "email": "info@maxmet.fi",
+    "foundingDate": "2026-10",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Harjulavägen 57",
+      "postalCode": "02440",
+      "addressLocality": "Luoma",
+      "addressRegion": "Kyrkslätt",
+      "addressCountry": "FI"
+    },
+    "areaServed": ["Kyrkslätt", "Kirkkonummi", "Esbo", "Espoo", "Uusimaa"],
+    "knowsLanguage": ["sv", "fi", "en"],
+    "makesOffer": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Specialtillverkning i metall"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Svetsning"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Plåtarbeten"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Räcken och trappor"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Reparationer"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Småserieproduktion"}}
+    ]
+  }
+  </script>
+  <!-- TODO JSON-LD: set real "telephone", "email" and add "vatID"/"taxID" (Y-tunnus) once known -->
+
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script>document.documentElement.classList.add('js')</script>
+  <script src="js/images.js"></script>
+  <script>
+    /* Builds responsive image URLs (Unsplash gets resized versions, local files are used as-is)
+       and preloads the hero image so it starts downloading immediately. */
+    window.MAXMET_SRCSET = function (src, widths) {
+      if (!/images\.unsplash\.com/.test(src)) return null;
+      return widths.map(function (w) { return src + '?auto=format&fit=crop&w=' + w + '&q=70 ' + w + 'w'; }).join(', ');
+    };
+    window.MAXMET_SRC = function (src, w) {
+      return /images\.unsplash\.com/.test(src) ? src + '?auto=format&fit=crop&w=' + w + '&q=70' : src;
+    };
+    window.MAXMET_HERO_WIDTHS = [640, 960, 1280, 1600, 2000, 2400];
+    (function () {
+      var h = window.MAXMET_IMAGES && MAXMET_IMAGES.hero; if (!h) return;
+      var l = document.createElement('link'); l.rel = 'preload'; l.as = 'image'; l.setAttribute('fetchpriority', 'high');
+      var ss = MAXMET_SRCSET(h.src, MAXMET_HERO_WIDTHS);
+      if (ss) { l.setAttribute('imagesrcset', ss); l.setAttribute('imagesizes', '100vw'); } else { l.href = h.src; }
+      document.head.appendChild(l);
+    })();
+  </script>
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Hoppa till innehållet</a>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+      <symbol id="i-blueprint" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h5V4M15 20v-6h5M9 14h6"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+      <symbol id="i-weld" viewBox="0 0 24 24"><path d="M5 19 14 10M14 10l3-3 2 2-3 3M12 16l1.5 3M16 14l3 1.5M10 14l-1 3"/></symbol>
+      <symbol id="i-custom" viewBox="0 0 24 24"><path d="M3 21h18M6 21V10l6-6 6 6v11"/><path d="M10 21v-6h4v6"/></symbol>
+      <symbol id="i-sheet" viewBox="0 0 24 24"><path d="M3 17h8l3-10h7"/><path d="M3 20h8.5l3-10H21"/></symbol>
+      <symbol id="i-stairs" viewBox="0 0 24 24"><path d="M3 20h5v-5h5v-5h5V5h3"/><path d="M5 14 18 3"/></symbol>
+      <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.5 6.5a4 4 0 0 0 5 5L12 19a2.1 2.1 0 0 1-3-3l7.5-7.5a4 4 0 0 1-2-2Z"/><path d="m16 4 4 4"/></symbol>
+      <symbol id="i-batch" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
+      <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="logo" href="#top" aria-label="Maxmet">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span class="logo-text">MAXMET</span>
+      </a>
+
+      <nav class="nav" id="site-nav" aria-label="Huvudmeny">
+        <ul class="nav-list">
+          <li><a href="#about" data-i18n="nav.about">Om oss</a></li>
+          <li><a href="#services" data-i18n="nav.services">Tjänster</a></li>
+          <li><a href="#gallery" data-i18n="nav.gallery">Galleri</a></li>
+          <li><a href="#process" data-i18n="nav.process">Så fungerar det</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Kontakt</a></li>
+        </ul>
+        <a class="btn btn-primary btn-sm nav-cta" href="#contact" data-i18n="nav.cta">Begär offert</a>
+      </nav>
+
+      <div class="header-tools">
+        <div class="lang-switch" role="group" aria-label="Välj språk" data-i18n-attr="aria-label:nav.lang">
+          <button type="button" data-lang="sv" aria-pressed="true" lang="sv">SV</button>
+          <button type="button" data-lang="fi" aria-pressed="false" lang="fi">FI</button>
+          <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
+        </div>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span class="sr-only" data-i18n="nav.menu">Meny</span>
+          <span class="menu-bars" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-media" data-slot="hero" data-sizes="100vw" data-eager></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Metallverkstad i Kyrkslätt</p>
+        <h1 id="hero-title" data-i18n="hero.title">Precisionsarbete i metall från Kyrkslätt</h1>
+        <p class="hero-lead" data-i18n="hero.lead">Vi tillverkar, svetsar och bearbetar metall efter dina behov – från enstaka specialdelar till räcken, trappor och små serier.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact"><span data-i18n="hero.cta1">Begär offert</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost" href="#services" data-i18n="hero.cta2">Våra tjänster</a>
+        </div>
+      </div>
+      <div class="hero-meta">
+        <ul class="container">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span data-i18n="hero.meta1">Luoma, Kyrkslätt</span></li>
+          <li><span data-i18n="hero.meta2">Grundat 2026</span></li>
+          <li><span data-i18n="hero.meta3">För företag och privatpersoner</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-media frame frame-4x5 reveal" data-slot="about" data-sizes="(min-width: 900px) 45vw, 100vw"></div>
+        <div class="about-body">
+          <p class="eyebrow reveal" data-i18n="about.eyebrow">Om oss</p>
+          <h2 id="about-title" class="reveal" data-i18n="about.title">En ny verkstad med gammaldags noggrannhet</h2>
+          <p class="lead reveal" data-i18n="about.text">Maxmet är en nygrundad metallverkstad i Luoma, Kyrkslätt. Vi tar oss an projekt för både företag och privatpersoner och lägger lika stor omsorg på en enkel konsol som på ett helt trappräcke. Kort väg, rak kommunikation och arbete som håller – det är vad vi lovar.</p>
+          <ul class="trust">
+            <li class="reveal">
+              <span class="trust-icon"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span>
+              <div><h3 data-i18n="about.t1.title">Lokal service</h3><p data-i18n="about.t1.text">Nära till hands i Kyrkslätt med omnejd. Du pratar direkt med den som gör jobbet.</p></div>
+            </li>
+            <li class="reveal">
+              <span class="trust-icon"><svg class="icon" aria-hidden="true"><use href="#i-blueprint"/></svg></span>
+              <div><h3 data-i18n="about.t2.title">Skräddarsydda lösningar</h3><p data-i18n="about.t2.text">Vi tillverkar efter dina mått och ritningar – eller hjälper dig att ta fram en lösning.</p></div>
+            </li>
+            <li class="reveal">
+              <span class="trust-icon"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span>
+              <div><h3 data-i18n="about.t3.title">Pålitlig leverans</h3><p data-i18n="about.t3.text">Tydlig offert, överenskommen tidtabell och inga obehagliga överraskningar.</p></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <!-- TODO: confirm the final service list with the client -->
+    <section class="section services" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal" data-i18n="services.eyebrow">Tjänster</p>
+          <h2 id="services-title" class="reveal" data-i18n="services.title">Det vi gör</h2>
+          <p class="lead reveal" data-i18n="services.lead">Från en enda reservdel till en mindre serie – vi anpassar oss efter projektet.</p>
+        </header>
+        <ul class="cards">
+          <li class="card reveal">
+            <div class="frame frame-3x2" data-slot="services.custom" data-sizes="(min-width: 1100px) 360px, (min-width: 700px) 45vw, 100vw"></div>
+            <div class="card-body">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-custom"/></svg></span>
+              <h3 data-i18n="services.custom.title">Specialtillverkning</h3>
+              <p data-i18n="services.custom.text">Unika metalldelar och konstruktioner enligt ritning, mått eller idé.</p>
+            </div>
+          </li>
+          <li class="card reveal">
+            <div class="frame frame-3x2" data-slot="services.welding" data-sizes="(min-width: 1100px) 360px, (min-width: 700px) 45vw, 100vw"></div>
+            <div class="card-body">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-weld"/></svg></span>
+              <h3 data-i18n="services.welding.title">Svetsning</h3>
+              <p data-i18n="services.welding.text">MIG/MAG- och TIG-svetsning i stål, rostfritt och aluminium.</p>
+            </div>
+          </li>
+          <li class="card reveal">
+            <div class="frame frame-3x2" data-slot="services.sheet" data-sizes="(min-width: 1100px) 360px, (min-width: 700px) 45vw, 100vw"></div>
+            <div class="card-body">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-sheet"/></svg></span>
+              <h3 data-i18n="services.sheet.title">Plåtarbeten</h3>
+              <p data-i18n="services.sheet.text">Kapning, bockning och montering av plåtdetaljer.</p>
+            </div>
+          </li>
+          <li class="card reveal">
+            <div class="frame frame-3x2" data-slot="services.railings" data-sizes="(min-width: 1100px) 360px, (min-width: 700px) 45vw, 100vw"></div>
+            <div class="card-body">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-stairs"/></svg></span>
+              <h3 data-i18n="services.railings.title">Räcken och trappor</h3>
+              <p data-i18n="services.railings.text">Räcken, trappor och plattformar för hem, gård och fastighet.</p>
+            </div>
+          </li>
+          <li class="card reveal">
+            <div class="frame frame-3x2" data-slot="services.repairs" data-sizes="(min-width: 1100px) 360px, (min-width: 700px) 45vw, 100vw"></div>
+            <div class="card-body">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-wrench"/></svg></span>
+              <h3 data-i18n="services.repairs.title">Reparationer</h3>
+              <p data-i18n="services.repairs.text">Vi lagar, förstärker och bygger om metallkonstruktioner och utrustning.</p>
+            </div>
+          </li>
+          <li class="card reveal">
+            <div class="frame frame-3x2" data-slot="services.batch" data-sizes="(min-width: 1100px) 360px, (min-width: 700px) 45vw, 100vw"></div>
+            <div class="card-body">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-batch"/></svg></span>
+              <h3 data-i18n="services.batch.title">Småserier</h3>
+              <p data-i18n="services.batch.text">Jämn kvalitet i små och medelstora serier av samma detalj.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ GALLERY ============ -->
+    <section class="section gallery" id="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal" data-i18n="gallery.eyebrow">Galleri</p>
+          <h2 id="gallery-title" class="reveal" data-i18n="gallery.title">Från verkstadsgolvet</h2>
+        </header>
+        <!-- Filled from js/images.js → gallery -->
+        <ul class="gallery-grid" id="gallery-grid"></ul>
+      </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS ============ -->
+    <section class="section process" id="process" aria-labelledby="process-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal" data-i18n="process.eyebrow">Så fungerar det</p>
+          <h2 id="process-title" class="reveal" data-i18n="process.title">Tre steg till färdigt resultat</h2>
+        </header>
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step-num" aria-hidden="true">01</span>
+            <h3 data-i18n="process.s1.title">Kontakt</h3>
+            <p data-i18n="process.s1.text">Berätta vad du behöver – gärna med en skiss, mått eller ett foto.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step-num" aria-hidden="true">02</span>
+            <h3 data-i18n="process.s2.title">Offert</h3>
+            <p data-i18n="process.s2.text">Vi går igenom detaljerna och skickar ett tydligt pris och en tidtabell.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step-num" aria-hidden="true">03</span>
+            <h3 data-i18n="process.s3.title">Leverans</h3>
+            <p data-i18n="process.s3.text">Vi tillverkar enligt överenskommelse. Du hämtar, eller så levererar vi.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-grid">
+        <div class="contact-info">
+          <p class="eyebrow reveal" data-i18n="contact.eyebrow">Kontakt</p>
+          <h2 id="contact-title" class="reveal" data-i18n="contact.title">Berätta om ditt projekt</h2>
+          <p class="lead reveal" data-i18n="contact.lead">Ring, mejla eller fyll i formuläret så återkommer vi med en offert.</p>
+
+          <ul class="contact-list reveal">
+            <li>
+              <span class="contact-icon"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
+              <div>
+                <span class="contact-label" data-i18n="contact.phone">Telefon</span>
+                <!-- TODO: real phone number (href without spaces) -->
+                <a href="tel:+358000000000">+358 00 000 0000</a>
+              </div>
+            </li>
+            <li>
+              <span class="contact-icon"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></span>
+              <div>
+                <span class="contact-label" data-i18n="contact.email">E-post</span>
+                <!-- TODO: real email address -->
+                <a href="mailto:info@maxmet.fi">info@maxmet.fi</a>
+              </div>
+            </li>
+            <li>
+              <span class="contact-icon"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span>
+              <div>
+                <span class="contact-label" data-i18n="contact.address">Adress</span>
+                <address>Harjulavägen 57<br>02440 Luoma (Kyrkslätt / Kirkkonummi)</address>
+              </div>
+            </li>
+            <li>
+              <span class="contact-icon"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg></span>
+              <div>
+                <span class="contact-label" data-i18n="contact.person">Kontaktperson</span>
+                <!-- TODO: contact person name and role (edit in js/i18n.js → contact.personName, all 3 languages) -->
+                <span data-i18n="contact.personName">Förnamn Efternamn, verkställande direktör</span>
+              </div>
+            </li>
+          </ul>
+
+          <div class="map frame reveal">
+            <iframe
+              title="Karta: Harjulavägen 57, 02440 Luoma"
+              data-i18n-attr="title:contact.mapTitle"
+              src="https://www.google.com/maps?q=Harjulav%C3%A4gen+57,+02440+Luoma,+Finland&z=14&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap reveal">
+          <!--
+            TODO: connect the form.
+            Option A – Formspree: create a form at formspree.io and replace YOUR_FORM_ID below.
+            Option B – Cloudflare Worker / Pages Function: point action to e.g. /api/quote.
+            While the action still contains YOUR_FORM_ID the form shows a "demo" notice instead of sending.
+          -->
+          <form class="quote-form" id="quote-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+            <div class="field">
+              <label for="f-name"><span data-i18n="form.name">Namn</span> <span class="req" aria-hidden="true">*</span></label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="f-email"><span data-i18n="form.email">E-post</span> <span class="req" aria-hidden="true">*</span></label>
+                <input id="f-email" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="field">
+                <label for="f-phone" data-i18n="form.phone">Telefon</label>
+                <input id="f-phone" name="phone" type="tel" autocomplete="tel">
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-message"><span data-i18n="form.message">Meddelande</span> <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="f-message" name="message" rows="6" required placeholder="Vad behöver du? Mått, material, antal och önskad tidtabell hjälper oss." data-i18n-attr="placeholder:form.messagePh"></textarea>
+            </div>
+            <!-- Spam honeypot: leave empty -->
+            <div class="hp" aria-hidden="true">
+              <label for="f-company">Company</label>
+              <input id="f-company" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <input type="hidden" name="language" value="sv">
+            <button class="btn btn-primary btn-block" type="submit">
+              <span data-i18n="form.submit">Skicka förfrågan</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </button>
+            <p class="form-note" data-i18n="form.privacy">Vi använder uppgifterna endast för att besvara din förfrågan.</p>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="logo" href="#top" aria-label="Maxmet">
+          <span class="logo-mark" aria-hidden="true"></span>
+          <span class="logo-text">MAXMET</span>
+        </a>
+        <p class="footer-names">Maxmet Ab · Maxmet Oy · Maxmet Ltd</p>
+      </div>
+      <div class="footer-info">
+        <!-- TODO: real Y-tunnus / FO-nummer -->
+        <p><span data-i18n="footer.idLabel">FO-nummer</span>: 0000000-0</p>
+        <p>Harjulavägen 57, 02440 Luoma, Finland</p>
+        <p><a href="tel:+358000000000">+358 00 000 0000</a> · <a href="mailto:info@maxmet.fi">info@maxmet.fi</a></p>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Maxmet Ab. <span data-i18n="footer.rights">Alla rättigheter förbehållna.</span></p>
+        <a href="#top" data-i18n="footer.top">Till början</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <dialog class="lightbox" id="lightbox" aria-label="Galleri" data-i18n-attr="aria-label:gallery.eyebrow">
+    <figure class="lightbox-figure">
+      <img class="lightbox-img" alt="" decoding="async">
+      <figcaption class="lightbox-caption"><span class="lightbox-text"></span><span class="lightbox-count"></span></figcaption>
+    </figure>
+    <button class="lb-btn lb-close" type="button" aria-label="Stäng" data-i18n-attr="aria-label:lightbox.close"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+    <button class="lb-btn lb-prev" type="button" aria-label="Föregående bild" data-i18n-attr="aria-label:lightbox.prev"><svg class="icon" aria-hidden="true"><use href="#i-chev-l"/></svg></button>
+    <button class="lb-btn lb-next" type="button" aria-label="Nästa bild" data-i18n-attr="aria-label:lightbox.next"><svg class="icon" aria-hidden="true"><use href="#i-chev-r"/></svg></button>
+  </dialog>
+</body>
+</html>
