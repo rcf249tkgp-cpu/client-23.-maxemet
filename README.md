@@ -13,14 +13,14 @@ public/                ← THE WEBSITE (this folder is what Cloudflare publishes
   js/main.js           language switch, image slots, gallery + lightbox, form, sticky call bar, scroll fade-ins
   _headers             Cloudflare headers (security + caching)
   robots.txt, sitemap.xml, favicon.svg
-wrangler.toml          Cloudflare Pages config (output folder = public, no build step)
+wrangler.jsonc         Cloudflare Workers config (serves ./public as static assets, no build step)
 package.json           shortcuts: npm run dev / npm run deploy (no dependencies to install)
 README.md              this file (not published)
 ```
 
 ## Run locally
 
-Use Cloudflare's own local server, which applies `_headers` and the 404 page exactly like production:
+Use Cloudflare's own local server (`wrangler dev`), which applies `_headers` and the 404 page exactly like production:
 
 ```bash
 npm run dev
@@ -32,23 +32,30 @@ Then open http://localhost:8788. Any static server works too:
 python3 -m http.server 8000 --directory public
 ```
 
-## Deploy to Cloudflare Pages
+## Deploy to Cloudflare
 
-There is no build step: Cloudflare serves the `public/` folder as it is.
+The site runs as a **Cloudflare Worker with static assets** (Worker name `client-23--maxemet`). `wrangler.jsonc` tells Cloudflare to serve the `public/` folder as it is. There is no build step and nothing to install.
 
-### Option A – connect the GitHub repo (recommended, auto-deploys on every push)
+### Automatic deploys (current setup)
 
-1. In the Cloudflare dashboard, go to **Workers & Pages → Create → Pages → Connect to Git**, then pick this repository.
-2. Set these build settings:
-   - **Production branch:** `main`. The work is currently on `claude/determined-cannon-yn929w`: merge it into `main` first, or pick that branch.
-   - **Framework preset:** None.
-   - **Build command:** leave empty.
-   - **Build output directory:** `public`. `wrangler.toml` also sets this.
-3. Click **Save and Deploy**. The site appears at `https://<project>.pages.dev`.
+The Worker is connected to this GitHub repo through **Workers Builds**, and every push to the configured branch redeploys. The build settings in the Cloudflare dashboard (**Workers & Pages → client-23--maxemet → Settings → Build**) should be:
+- **Build command:** empty.
+- **Deploy command:** `npx wrangler deploy` (the default).
+- **Root directory:** `/`.
 
-Every push to the production branch redeploys. Other branches get their own preview URLs.
+The deploy uses `wrangler.jsonc`:
 
-### Option B – direct upload from your computer
+```jsonc
+{
+  "name": "client-23--maxemet",
+  "compatibility_date": "2025-11-01",
+  "assets": { "directory": "./public", "not_found_handling": "404-page" }
+}
+```
+
+If you rename the Worker in the dashboard, change `name` here too. Otherwise the build fails with a name mismatch.
+
+### Manual deploy from your computer
 
 ```bash
 npx wrangler@4 login
@@ -58,18 +65,16 @@ npx wrangler@4 login
 npm run deploy
 ```
 
-The first run creates the `maxmet` project. `npm run deploy` publishes `public/` as the production (`main`) deployment.
-
 ### Custom domain
 
-Go to **Pages project → Custom domains → Set up a domain**, e.g. `maxmet.fi` and `www.maxmet.fi`. Then replace the `https://maxmet.fi/` placeholders (see the table below) with the real domain.
+Go to **Worker → Settings → Domains & Routes → Add → Custom domain**, e.g. `maxmet.fi` and `www.maxmet.fi`. Then replace the `https://maxmet.fi/` placeholders (see the table below) with the real domain.
 
-### What Cloudflare will do (checked locally with `wrangler pages dev`)
+### What Cloudflare will do (checked locally with `wrangler dev`)
 - `/` serves the site. `/index.html` redirects to `/`, and `?lang=fi` / `?lang=en` work.
-- Unknown URLs return a real **404** with the branded `404.html` page, which is marked noindex.
+- Unknown URLs return a real **404** with the branded `404.html` page (`not_found_handling: "404-page"`), which is marked noindex.
 - Security headers are added to every page: HSTS, nosniff, frame protection, Referrer-Policy, Permissions-Policy.
 - CSS/JS are cached for 10 minutes. The file names have no version, so a short cache means changes show up right after a deploy.
-- `README.md`, `wrangler.toml` and `package.json` are **not** published, because only `public/` is.
+- `README.md`, `wrangler.jsonc` and `package.json` are **not** published, because only `public/` is.
 
 ## Things to fill in before launch (search for `TODO`)
 
@@ -111,7 +116,7 @@ Find and replace both strings across the file and you're done.
 
 ### Form
 - **Formspree:** create a form, then replace `YOUR_FORM_ID`. The form already sends via `fetch` and shows success and error messages in the current language.
-- **Cloudflare:** point `action` to a Pages Function, e.g. `/api/quote` (`functions/api/quote.js`), that emails or stores the request.
+- **Cloudflare:** add a Worker script (`main` in `wrangler.jsonc`) that handles `POST /api/quote` and emails or stores the request, then point `action` to `/api/quote`.
 - While the action still contains `YOUR_FORM_ID`, submitting shows a "not connected yet" notice instead of sending.
 
 ## Replacing photos

@@ -1,6 +1,0 @@
-# Cloudflare Pages config.
-# With this file in the repo, Cloudflare uses ./public as the site folder
-# (no build command needed).
-name = "maxmet"
-pages_build_output_dir = "./public"
-compatibility_date = "2025-01-01"
