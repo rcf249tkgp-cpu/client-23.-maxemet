@@ -4,47 +4,88 @@ A one-page static site for Maxmet Ab / Maxmet Oy / Maxmet Ltd (metal workshop in
 It is plain HTML, CSS and JS with no build step and no framework.
 
 ```
-index.html        all markup (Swedish text is written in directly, so it works without JS and gets indexed)
-css/style.css     all styles (mobile-first)
-js/images.js      ← EVERY PHOTO: slot, URL, alt text in SV/FI/EN
-js/i18n.js        ← ALL TEXT in Swedish, Finnish and English
-js/main.js        language switch, image slots, gallery + lightbox, form, sticky call bar, scroll fade-ins
-_headers          Cloudflare Pages headers (security + caching)
-robots.txt, sitemap.xml, favicon.svg
+public/                ← THE WEBSITE (this folder is what Cloudflare publishes)
+  index.html           all markup (Swedish text is written in directly, so it works without JS and gets indexed)
+  404.html             "page not found" page (SV/FI/EN)
+  css/style.css        all styles (mobile-first)
+  js/images.js         ← EVERY PHOTO: slot, URL, alt text in SV/FI/EN
+  js/i18n.js           ← ALL TEXT in Swedish, Finnish and English
+  js/main.js           language switch, image slots, gallery + lightbox, form, sticky call bar, scroll fade-ins
+  _headers             Cloudflare headers (security + caching)
+  robots.txt, sitemap.xml, favicon.svg
+wrangler.toml          Cloudflare Pages config (output folder = public, no build step)
+package.json           shortcuts: npm run dev / npm run deploy (no dependencies to install)
+README.md              this file (not published)
 ```
 
 ## Run locally
 
+Use Cloudflare's own local server, which applies `_headers` and the 404 page exactly like production:
+
 ```bash
-python3 -m http.server 8000
+npm run dev
 ```
 
-Then open http://localhost:8000. Add `?lang=fi` or `?lang=en` to open the page in another language.
+Then open http://localhost:8788. Any static server works too:
+
+```bash
+python3 -m http.server 8000 --directory public
+```
 
 ## Deploy to Cloudflare Pages
 
-- **Git:** connect the repo in Cloudflare Pages. Framework preset: *None*. Build command: *(empty)*. Output directory: `/`.
-- **Or direct upload:**
+There is no build step: Cloudflare serves the `public/` folder as it is.
+
+### Option A – connect the GitHub repo (recommended, auto-deploys on every push)
+
+1. In the Cloudflare dashboard, go to **Workers & Pages → Create → Pages → Connect to Git**, then pick this repository.
+2. Set these build settings:
+   - **Production branch:** `main`. The work is currently on `claude/determined-cannon-yn929w`: merge it into `main` first, or pick that branch.
+   - **Framework preset:** None.
+   - **Build command:** leave empty.
+   - **Build output directory:** `public`. `wrangler.toml` also sets this.
+3. Click **Save and Deploy**. The site appears at `https://<project>.pages.dev`.
+
+Every push to the production branch redeploys. Other branches get their own preview URLs.
+
+### Option B – direct upload from your computer
 
 ```bash
-npx wrangler pages deploy . --project-name maxmet
+npx wrangler@4 login
 ```
+
+```bash
+npm run deploy
+```
+
+The first run creates the `maxmet` project. `npm run deploy` publishes `public/` as the production (`main`) deployment.
+
+### Custom domain
+
+Go to **Pages project → Custom domains → Set up a domain**, e.g. `maxmet.fi` and `www.maxmet.fi`. Then replace the `https://maxmet.fi/` placeholders (see the table below) with the real domain.
+
+### What Cloudflare will do (checked locally with `wrangler pages dev`)
+- `/` serves the site. `/index.html` redirects to `/`, and `?lang=fi` / `?lang=en` work.
+- Unknown URLs return a real **404** with the branded `404.html` page, which is marked noindex.
+- Security headers are added to every page: HSTS, nosniff, frame protection, Referrer-Policy, Permissions-Policy.
+- CSS/JS are cached for 10 minutes. The file names have no version, so a short cache means changes show up right after a deploy.
+- `README.md`, `wrangler.toml` and `package.json` are **not** published, because only `public/` is.
 
 ## Things to fill in before launch (search for `TODO`)
 
 | What | Where |
 |---|---|
-| Phone number (`+358 00 000 0000`) | `index.html`: 10 places, all listed in the next section |
-| Email address (`info@maxmet.fi` is a placeholder) | `index.html` (contact + footer + JSON-LD) |
-| Y-tunnus / FO-nummer (`0000000-0`) | `index.html` footer, and optionally the JSON-LD |
-| Contact person name and role | `js/i18n.js` → `contact.personName` (in all 3 languages), plus the Swedish fallback in `index.html` |
-| Final service list | the services section in `index.html` + `services.*` keys in `js/i18n.js` |
-| Form endpoint | `index.html` → `<form action="https://formspree.io/f/YOUR_FORM_ID">` |
-| Domain (`https://maxmet.fi/` placeholder) | `index.html` head (canonical, hreflang, og:url, JSON-LD), `robots.txt`, `sitemap.xml` |
+| Phone number (`+358 00 000 0000`) | `public/index.html` (10 places) + `public/404.html` (1), all listed in the next section |
+| Email address (`info@maxmet.fi` is a placeholder) | `public/index.html` (contact + footer + JSON-LD) |
+| Y-tunnus / FO-nummer (`0000000-0`) | `public/index.html` footer, and optionally the JSON-LD |
+| Contact person name and role | `public/js/i18n.js` → `contact.personName` (in all 3 languages), plus the Swedish fallback in `public/index.html` |
+| Final service list | the services section in `public/index.html` + `services.*` keys in `public/js/i18n.js` |
+| Form endpoint | `public/index.html` → `<form action="https://formspree.io/f/YOUR_FORM_ID">` |
+| Domain (`https://maxmet.fi/` placeholder) | `public/index.html` head (canonical, hreflang, og:url, JSON-LD), `public/robots.txt`, `public/sitemap.xml` |
 
 ### Phone number – every place it appears
 
-The placeholder is `+358 00 000 0000`. Links use `tel:+358000000000` (no spaces). Every place is marked with a `TODO phone` comment in `index.html`:
+The placeholder is `+358 00 000 0000`. Links use `tel:+358000000000` (no spaces). Every place is marked with a `TODO phone` comment in `public/index.html`:
 
 | # | Where | What to change |
 |---|---|---|
@@ -58,11 +99,12 @@ The placeholder is `+358 00 000 0000`. Links use `tel:+358000000000` (no spaces)
 | 8 | Footer | `href` + visible number |
 | 9 | Sticky call bar (phones): "Ring" button | `href` |
 | 10 | HTML comment above the header | the note itself |
+| 11 | `public/404.html`: phone button | `href` + visible number |
 
 To find them all at once:
 
 ```bash
-grep -n "358000000000\|00 000 0000" index.html
+grep -rn "358000000000\|00 000 0000" public/
 ```
 
 Find and replace both strings across the file and you're done.
@@ -74,15 +116,15 @@ Find and replace both strings across the file and you're done.
 
 ## Replacing photos
 
-Open `js/images.js` and change the `src` of a slot. Each `// TEMP` line marks a stock photo that should be replaced.
+Open `public/js/images.js` and change the `src` of a slot. Each `// TEMP` line marks a stock photo that should be replaced.
 
-- Use a full URL or a local file, e.g. put photos in `img/` and use `src: "img/railing-1.jpg"`.
+- Use a full URL or a local file, e.g. put photos in `public/img/` and use `src: "img/railing-1.jpg"`.
 - Any size or orientation works, phone photos included. Every frame has a fixed aspect ratio and crops with `object-fit: cover`.
 - If an important part of a photo gets cropped away, add `position: "50% 30%"` to that slot (horizontal %, vertical %).
 - The gallery takes any number of photos. Add or remove entries in the `gallery` array.
 - Recommended size for local photos: about 2000 px wide for the hero and 1200–1600 px for the rest. Save as JPG or WebP at roughly 75–80 % quality.
 - Remember to update the alt text (`sv`, `fi`, `en`).
-- Also replace the share image (`og:image`) in `index.html` with a 1200×630 photo.
+- Also replace the share image (`og:image`) in `public/index.html` with a 1200×630 photo.
 
 ## Call options
 
@@ -103,7 +145,7 @@ Service cards are links. Tapping one jumps to the form and pre-fills the message
 
 ## Editing text
 
-All text lives in `js/i18n.js`. Swedish is also written directly in `index.html` for SEO and no-JS visitors, so when you change Swedish copy, update both places.
+All text lives in `public/js/i18n.js`. Swedish is also written directly in `public/index.html` for SEO and no-JS visitors, so when you change Swedish copy, update both places.
 
 ## Quality checks (last run)
 

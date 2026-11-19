@@ -1,0 +1,21 @@
+# Cloudflare Pages headers – https://developers.cloudflare.com/pages/configuration/headers/
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=31536000
+
+# CSS/JS have no version in their file names, so keep the cache short:
+# browsers re-check after 10 minutes and get changes right after a deploy.
+/css/*
+  Cache-Control: public, max-age=600, stale-while-revalidate=86400
+
+/js/*
+  Cache-Control: public, max-age=600, stale-while-revalidate=86400
+
+/favicon.svg
+  Cache-Control: public, max-age=604800
+
+/404.html
+  X-Robots-Tag: noindex

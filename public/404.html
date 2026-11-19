@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sidan hittades inte – Maxmet</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#121417">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .nf { min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: 48px 0; }
+    .nf-inner { max-width: 640px; }
+    .nf .logo { margin-bottom: 48px; }
+    .nf .nf-code { font-size: clamp(4.5rem, 20vw, 8rem); font-weight: 800; line-height: 1; letter-spacing: -0.04em; color: transparent; -webkit-text-stroke: 1.5px var(--accent); margin-bottom: 20px; }
+    .nf h1 { font-size: clamp(1.75rem, 6vw, 2.5rem); margin-bottom: 14px; }
+    .nf p { color: var(--text-2); }
+    .nf p + p { margin-top: 4px; }
+    .nf-actions { display: grid; gap: 12px; margin-top: 32px; }
+    @media (min-width: 480px) { .nf-actions { display: flex; flex-wrap: wrap; } }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    </defs>
+  </svg>
+  <main class="nf">
+    <div class="container nf-inner">
+      <a class="logo" href="/" aria-label="Maxmet">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span class="logo-text">MAXMET</span>
+      </a>
+      <p class="nf-code" aria-hidden="true">404</p>
+      <h1>Sidan hittades inte</h1>
+      <p lang="fi">Sivua ei löytynyt.</p>
+      <p lang="en">Page not found.</p>
+      <div class="nf-actions">
+        <a class="btn btn-primary" href="/"><span>Till startsidan · Etusivulle · Home</span><svg class="icon icon-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <!-- TODO phone -->
+        <a class="btn btn-outline" href="tel:+358000000000"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><span>+358 00 000 0000</span></a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

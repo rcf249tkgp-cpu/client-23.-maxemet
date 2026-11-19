@@ -1,0 +1,9 @@
+{
+  "name": "maxmet-website",
+  "private": true,
+  "description": "Maxmet Ab – static one-page website (Cloudflare Pages)",
+  "scripts": {
+    "dev": "npx wrangler@4 pages dev public --port 8788",
+    "deploy": "npx wrangler@4 pages deploy public --project-name maxmet --branch main"
+  }
+}
