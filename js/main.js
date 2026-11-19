@@ -88,6 +88,11 @@
         sizes: '(min-width: 1100px) 290px, (min-width: 700px) 32vw, 50vw'
       }));
       btn.appendChild(frame);
+      var plus = document.createElement('span');
+      plus.className = 'tile-plus';
+      plus.setAttribute('aria-hidden', 'true');
+      plus.innerHTML = '<svg class="icon"><use href="#i-plus"/></svg>';
+      btn.appendChild(plus);
       btn.addEventListener('click', function () { openLightbox(i); });
       li.appendChild(btn);
       frag.appendChild(li);
@@ -197,6 +202,8 @@
     document.querySelectorAll('.lang-switch button').forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang));
     });
+    var sel = document.querySelector('.lang-select');
+    if (sel) sel.value = lang;
     var hidden = document.querySelector('#quote-form input[name="language"]');
     if (hidden) hidden.value = lang;
 
@@ -242,17 +249,21 @@
       toggle.setAttribute('aria-expanded', String(open));
       nav.classList.toggle('is-open', open);
       header.classList.toggle('menu-open', open);
+      document.documentElement.classList.toggle('is-locked', open);
+      document.dispatchEvent(new CustomEvent('maxmet:menu', { detail: open }));
     }
     toggle.addEventListener('click', function () { setMenu(toggle.getAttribute('aria-expanded') !== 'true'); });
     nav.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && nav.classList.contains('is-open')) { setMenu(false); toggle.focus(); }
     });
-    window.matchMedia('(min-width: 960px)').addEventListener('change', function (m) { if (m.matches) setMenu(false); });
+    window.matchMedia('(min-width: 1200px)').addEventListener('change', function (m) { if (m.matches) setMenu(false); });
 
     document.querySelectorAll('.lang-switch button').forEach(function (b) {
       b.addEventListener('click', function () { applyLang(b.getAttribute('data-lang'), true); });
     });
+    var sel = document.querySelector('.lang-select');
+    if (sel) sel.addEventListener('change', function () { applyLang(sel.value, true); });
 
     // Highlight current section in nav
     if ('IntersectionObserver' in window) {
@@ -344,12 +355,55 @@
     });
   }
 
+  /* ---------------- Sticky call bar (phones) ----------------
+     Visible after the hero has scrolled out of view, hidden while the
+     contact section is on screen or the menu is open. */
+  function initCallbar() {
+    var bar = document.getElementById('callbar');
+    var hero = document.querySelector('.hero');
+    var contact = document.getElementById('contact');
+    if (!bar || !hero || !contact || !('IntersectionObserver' in window)) return;
+    var pastHero = false, contactInView = false, menuOpen = false;
+    var links = bar.querySelectorAll('a');
+    function update() {
+      var show = pastHero && !contactInView && !menuOpen;
+      bar.classList.toggle('is-visible', show);
+      bar.setAttribute('aria-hidden', String(!show));
+      links.forEach(function (a) { if (show) a.removeAttribute('tabindex'); else a.setAttribute('tabindex', '-1'); });
+    }
+    new IntersectionObserver(function (e) {
+      pastHero = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; update();
+    }, { rootMargin: '0px 0px -88px 0px' }).observe(hero);
+    new IntersectionObserver(function (e) {
+      contactInView = e[0].isIntersecting; update();
+    }, { rootMargin: '0px 0px -15% 0px' }).observe(contact);
+    document.addEventListener('maxmet:menu', function (e) { menuOpen = e.detail; update(); });
+  }
+
+  /* ---------------- Service cards → pre-fill the quote form ---------------- */
+  function initServiceCards() {
+    var msg = document.getElementById('f-message');
+    document.querySelectorAll('.card[data-service]').forEach(function (card) {
+      card.addEventListener('click', function () {
+        if (!msg) return;
+        var prefix = t('form.prefill') + t(card.getAttribute('data-service'));
+        // Only fill an empty field (or one we pre-filled earlier) – never overwrite what the visitor wrote
+        if (!msg.value.trim() || msg.dataset.prefilled === msg.value) {
+          msg.value = prefix + '\n';
+          msg.dataset.prefilled = msg.value;
+        }
+      });
+    });
+  }
+
   /* ---------------- Boot ---------------- */
   renderSlots();
   renderGallery();
   initLightbox();
   initHeader();
   initForm();
+  initCallbar();
+  initServiceCards();
   var start = initialLang();
   if (start !== DEFAULT_LANG) applyLang(start, false);
   else applyLang(DEFAULT_LANG, false);

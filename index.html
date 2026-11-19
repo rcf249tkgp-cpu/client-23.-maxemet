@@ -2,7 +2,7 @@
 <html lang="sv">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Maxmet Ab – Metallarbeten och svetsning i Kyrkslätt</title>
   <meta name="description" content="Maxmet är en ny metallverkstad i Luoma, Kyrkslätt. Specialtillverkning, svetsning, plåtarbeten, räcken och trappor, reparationer och småserier. Begär offert.">
   <meta name="theme-color" content="#121417">
@@ -116,11 +116,13 @@
       <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
       <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
       <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
       <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
     </defs>
   </svg>
 
   <!-- ============ HEADER ============ -->
+  <!-- PHONE: every tel: link uses the placeholder +358 00 000 0000 (href tel:+358000000000). TODO: replace all – see README -->
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a class="logo" href="#top" aria-label="Maxmet">
@@ -128,7 +130,7 @@
         <span class="logo-text">MAXMET</span>
       </a>
 
-      <nav class="nav" id="site-nav" aria-label="Huvudmeny">
+      <nav class="nav" id="site-nav" aria-label="Huvudmeny" data-i18n-attr="aria-label:nav.main">
         <ul class="nav-list">
           <li><a href="#about" data-i18n="nav.about">Om oss</a></li>
           <li><a href="#services" data-i18n="nav.services">Tjänster</a></li>
@@ -136,7 +138,16 @@
           <li><a href="#process" data-i18n="nav.process">Så fungerar det</a></li>
           <li><a href="#contact" data-i18n="nav.contact">Kontakt</a></li>
         </ul>
-        <a class="btn btn-primary btn-sm nav-cta" href="#contact" data-i18n="nav.cta">Begär offert</a>
+        <div class="nav-actions">
+          <!-- TODO phone -->
+          <a class="nav-phone" href="tel:+358000000000"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><span class="nav-phone-num">+358 00 000 0000</span><span class="nav-phone-label" data-i18n="call.direct">Ring direkt</span></a>
+          <a class="btn btn-primary btn-sm nav-cta" href="#contact" data-i18n="nav.cta">Begär offert</a>
+        </div>
+        <div class="nav-mobile-actions">
+          <!-- TODO phone -->
+          <a class="btn btn-outline btn-block" href="tel:+358000000000"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="call.direct">Ring direkt</span></a>
+          <a class="btn btn-primary btn-block" href="#contact" data-i18n="nav.cta">Begär offert</a>
+        </div>
       </nav>
 
       <div class="header-tools">
@@ -145,6 +156,16 @@
           <button type="button" data-lang="fi" aria-pressed="false" lang="fi">FI</button>
           <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
         </div>
+        <label class="lang-select-wrap">
+          <span class="sr-only" data-i18n="nav.lang">Välj språk</span>
+          <select class="lang-select">
+            <option value="sv" lang="sv">SV</option>
+            <option value="fi" lang="fi">FI</option>
+            <option value="en" lang="en">EN</option>
+          </select>
+        </label>
+        <!-- TODO phone -->
+        <a class="header-call" href="tel:+358000000000" data-number="+358 00 000 0000" aria-label="Ring oss" data-i18n-attr="aria-label:call.us"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
           <span class="sr-only" data-i18n="nav.menu">Meny</span>
           <span class="menu-bars" aria-hidden="true"></span>
@@ -163,8 +184,9 @@
         <h1 id="hero-title" data-i18n="hero.title">Precisionsarbete i metall från Kyrkslätt</h1>
         <p class="hero-lead" data-i18n="hero.lead">Vi tillverkar, svetsar och bearbetar metall efter dina behov – från enstaka specialdelar till räcken, trappor och små serier.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact"><span data-i18n="hero.cta1">Begär offert</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="btn btn-ghost" href="#services" data-i18n="hero.cta2">Våra tjänster</a>
+          <!-- TODO phone -->
+          <a class="btn btn-primary" href="tel:+358000000000"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="call.us">Ring oss</span></a>
+          <a class="btn btn-outline" href="#contact"><span data-i18n="hero.cta1">Begär offert</span><svg class="icon icon-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
       <div class="hero-meta">
@@ -212,53 +234,72 @@
           <p class="lead reveal" data-i18n="services.lead">Från en enda reservdel till en mindre serie – vi anpassar oss efter projektet.</p>
         </header>
         <ul class="cards">
-          <li class="card reveal">
+          <!-- Each card opens the quote form with the service pre-filled -->
+          <li class="reveal">
+            <a class="card" href="#contact" data-service="services.custom.title">
             <div class="frame frame-3x2" data-slot="services.custom" data-sizes="(min-width: 1100px) 360px, (min-width: 700px) 45vw, 100vw"></div>
             <div class="card-body">
               <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-custom"/></svg></span>
               <h3 data-i18n="services.custom.title">Specialtillverkning</h3>
               <p data-i18n="services.custom.text">Unika metalldelar och konstruktioner enligt ritning, mått eller idé.</p>
+              <span class="card-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span>
             </div>
+            </a>
           </li>
-          <li class="card reveal">
+          <li class="reveal">
+            <a class="card" href="#contact" data-service="services.welding.title">
             <div class="frame frame-3x2" data-slot="services.welding" data-sizes="(min-width: 1100px) 360px, (min-width: 700px) 45vw, 100vw"></div>
             <div class="card-body">
               <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-weld"/></svg></span>
               <h3 data-i18n="services.welding.title">Svetsning</h3>
               <p data-i18n="services.welding.text">MIG/MAG- och TIG-svetsning i stål, rostfritt och aluminium.</p>
+              <span class="card-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span>
             </div>
+            </a>
           </li>
-          <li class="card reveal">
+          <li class="reveal">
+            <a class="card" href="#contact" data-service="services.sheet.title">
             <div class="frame frame-3x2" data-slot="services.sheet" data-sizes="(min-width: 1100px) 360px, (min-width: 700px) 45vw, 100vw"></div>
             <div class="card-body">
               <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-sheet"/></svg></span>
               <h3 data-i18n="services.sheet.title">Plåtarbeten</h3>
               <p data-i18n="services.sheet.text">Kapning, bockning och montering av plåtdetaljer.</p>
+              <span class="card-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span>
             </div>
+            </a>
           </li>
-          <li class="card reveal">
+          <li class="reveal">
+            <a class="card" href="#contact" data-service="services.railings.title">
             <div class="frame frame-3x2" data-slot="services.railings" data-sizes="(min-width: 1100px) 360px, (min-width: 700px) 45vw, 100vw"></div>
             <div class="card-body">
               <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-stairs"/></svg></span>
               <h3 data-i18n="services.railings.title">Räcken och trappor</h3>
               <p data-i18n="services.railings.text">Räcken, trappor och plattformar för hem, gård och fastighet.</p>
+              <span class="card-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span>
             </div>
+            </a>
           </li>
-          <li class="card reveal">
+          <li class="reveal">
+            <a class="card" href="#contact" data-service="services.repairs.title">
             <div class="frame frame-3x2" data-slot="services.repairs" data-sizes="(min-width: 1100px) 360px, (min-width: 700px) 45vw, 100vw"></div>
             <div class="card-body">
               <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-wrench"/></svg></span>
               <h3 data-i18n="services.repairs.title">Reparationer</h3>
               <p data-i18n="services.repairs.text">Vi lagar, förstärker och bygger om metallkonstruktioner och utrustning.</p>
+              <span class="card-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span>
             </div>
+            </a>
           </li>
-          <li class="card reveal">
+          <li class="reveal">
+            <a class="card" href="#contact" data-service="services.batch.title">
             <div class="frame frame-3x2" data-slot="services.batch" data-sizes="(min-width: 1100px) 360px, (min-width: 700px) 45vw, 100vw"></div>
             <div class="card-body">
               <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-batch"/></svg></span>
               <h3 data-i18n="services.batch.title">Småserier</h3>
               <p data-i18n="services.batch.text">Jämn kvalitet i små och medelstora serier av samma detalj.</p>
+              <span class="card-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span>
             </div>
+            </a>
           </li>
         </ul>
       </div>
@@ -345,6 +386,12 @@
             </li>
           </ul>
 
+          <div class="contact-actions reveal">
+            <!-- TODO phone -->
+            <a class="btn btn-primary" href="tel:+358000000000"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="call.direct">Ring direkt</span></a>
+            <a class="btn btn-outline" href="mailto:info@maxmet.fi"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><span data-i18n="contact.sendEmail">Skicka e-post</span></a>
+          </div>
+
           <div class="map frame reveal">
             <iframe
               title="Karta: Harjulavägen 57, 02440 Luoma"
@@ -420,6 +467,13 @@
       </div>
     </div>
   </footer>
+
+  <!-- ============ STICKY CALL BAR (mobile only) ============ -->
+  <div class="callbar" id="callbar" aria-hidden="true">
+    <!-- TODO phone -->
+    <a class="btn btn-outline" href="tel:+358000000000" tabindex="-1"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="call.short">Ring</span></a>
+    <a class="btn btn-primary" href="#contact" tabindex="-1" data-i18n="nav.cta">Begär offert</a>
+  </div>
 
   <!-- ============ LIGHTBOX ============ -->
   <dialog class="lightbox" id="lightbox" aria-label="Galleri" data-i18n-attr="aria-label:gallery.eyebrow">
